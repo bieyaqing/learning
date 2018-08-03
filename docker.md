@@ -31,6 +31,7 @@ cd /home/xxx
 virtualenv .env
 source .env/bin/activate
 pip install Flask
+
 nano app.py
 -> from flask import Flask
 ->
@@ -42,11 +43,22 @@ nano app.py
 ->
 -> if __name__ == '__main__':
 ->     app.run(debug=True)
+
 pip install gunicorn
 gunicorn -w 4 app:app &
 nano /etc/nginx/conf.d/xxx.conf
+-> server {
+->    listen       80;
+->    server_name  your_public_dnsname_here;
+->
+->    location / {
+->        proxy_pass http://127.0.0.1:8000;
+->    }
+-> }
+
 nano /etc/nginx/sites-enabled/default
 -> comment everything in the default file
+
 nginx -t
 service nginx restart
 ```
