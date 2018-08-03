@@ -2,6 +2,9 @@
 ```bash
 docker pull ubuntu:16.04
 docker run --name ubuntu_16_test -it -p 3306:3306 -p 80:80 ubuntu:16.04 /bin/bash
+
+docker start ubuntu_16_test
+docker exec -it ubuntu_16_test /bin/bash
 ```
 
 ## Docker Container
